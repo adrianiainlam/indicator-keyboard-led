@@ -37,7 +37,7 @@ gi.require_version('AppIndicator3', '0.1')
 from gi.repository import Gdk, Gtk, AppIndicator3
 
 class IndicatorKeyboardLED:
-    locks = { 'caps': 'Caps', 'num': 'Num', 'scr': 'Scroll' }
+    locks = { 'num': 'Num', 'caps': 'Caps', 'scr': 'Scroll' }
     
     def __init__(self, short=False):
         self.indicator = AppIndicator3.Indicator.new(
@@ -47,7 +47,7 @@ class IndicatorKeyboardLED:
         self.indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
         
         if short:
-            self.locks = { 'caps': 'C', 'num': 'N', 'scr': 'S' }
+            self.locks = { 'num': 'N', 'caps': 'C', 'scr': 'S' }
 
         keymap = Gdk.Keymap.get_default()
         keymap.connect('state-changed', self.update_indicator)
@@ -55,26 +55,26 @@ class IndicatorKeyboardLED:
 
         menu = Gtk.Menu()
         items = {
-            'caps' : Gtk.MenuItem.new_with_label('Caps Lock'),
             'num'  : Gtk.MenuItem.new_with_label('Num Lock'),
+            'caps' : Gtk.MenuItem.new_with_label('Caps Lock'),
             'scr'  : Gtk.MenuItem.new_with_label('Scroll Lock')
         }
-        menu.append(items['caps'])
         menu.append(items['num'])
+        menu.append(items['caps'])
         menu.append(items['scr'])
 
-        items['caps'].connect('activate', self.send_keypress, 'Caps_Lock')
         items['num' ].connect('activate', self.send_keypress, 'Num_Lock')
+        items['caps'].connect('activate', self.send_keypress, 'Caps_Lock')
         items['scr' ].connect('activate', self.send_keypress, 'Scroll_Lock')
 
         self.indicator.set_menu(menu)
         menu.show_all()
 
     def update_indicator(self, keymap):
-        label = '⚫' if keymap.get_caps_lock_state() else '⚪'
-        label += self.locks['caps'] + ' '
-        label += '⚫' if keymap.get_num_lock_state() else '⚪'
+        label = '⚫' if keymap.get_num_lock_state() else '⚪'
         label += self.locks['num'] + ' '
+        label += '⚫' if keymap.get_caps_lock_state() else '⚪'
+        label += self.locks['caps'] + ' '
         label += '⚫' if keymap.get_scroll_lock_state() else '⚪'
         label += self.locks['scr']
         self.indicator.set_label(label, '')
@@ -88,7 +88,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='indicator-keyboard-led - simulate keyboard lock keys LED')
     parser.add_argument('-s', '--short', dest='short', action='store_true',
-        help='use short label, i.e. ⚫C ⚫N ⚫S instead of ⚫Caps ⚫Num ⚫Scroll',
+        help='use short label, i.e. ⚫N ⚫C ⚫S instead of ⚫Num ⚫Caps ⚫Scroll',
         required=False)
     args = parser.parse_args()
     
