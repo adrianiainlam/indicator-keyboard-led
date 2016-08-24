@@ -8,15 +8,15 @@ useful for keyboards without Scroll lock keys or malfunctioning keyboards.
 
 ## Screenshots
 
-![indicator default][sc1]
+![indicator default][sc1]  
 Default appearance of the indicator with Num lock on and Caps and Scroll locks
 off.
 
-![indicator menu][sc2]
+![indicator menu][sc2]  
 Menu of the indicator, shown on click. The locks can be toggled by clicking
 the respective item in the menu.
 
-![indicator short][sc3]
+![indicator short][sc3]  
 Alternative (short) appearance of the indicator.
 
 [sc1]: screenshots/sc1.png
@@ -48,6 +48,40 @@ distributions. To install the rest, run:
     turned off.
  6. Clicking on the indicator should result in a menu with the three locks.
     Clicking on the menu item would cause the corresponding lock to toggle.
+
+## Known bugs
+
+It seems to be a common problem that Scroll Lock is not usable in Ubuntu.
+To solve this, do the following (assuming US keyboard):
+
+ >     # backup your symbols file
+ >     sudo cp /usr/share/X11/xkb/symbols/us{,.distribution} 
+ >
+ > Add the following line in the `xkb_symbols "basic" {` section. Do not worry
+ > if that second line is not there, it is only there for some languages and
+ > was not there for us on my system.
+ >
+ >     ...
+ >         modifier_map Mod3   { Scroll_Lock }; <==<< Add this line
+ > 
+ >         include "level3(ralt_switch)" <==<< before this line
+ >     };
+ >
+ >
+ > You may have to do the same in your other layouts if you switch between
+ > languages.
+ >
+ > Also, there is a cache where xkb layouts live. You should clear it before
+ > restarting your X server to check the new keyboard symbol file(s).
+ >
+ >     sudo dpkg-reconfigure xkb-data
+
+*By Pykler and Giovanni Toraldo on AskUbuntu.* [Source][quotesrc]. Slightly
+modified. [Original source][origsrc] by dm+ on PCLinuxOS-Forums.
+
+[origsrc]: http://www.pclinuxos.com/forum/index.php/topic,125690.msg1052201.html?PHPSESSID=2qsv83lve6dgd0ivq14bfcjc30#msg1052201
+[quotesrc]: http://askubuntu.com/a/597757/274080
+    
 
 ## License
 
