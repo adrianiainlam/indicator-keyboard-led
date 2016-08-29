@@ -19,10 +19,6 @@ the respective item in the menu.
 ![indicator short][sc3]  
 Alternative (short) appearance of the indicator.
 
-[sc1]: screenshots/sc1.png
-[sc2]: screenshots/sc2.png
-[sc3]: screenshots/sc3.png
-
 ## Dependencies
  - Python 3 (*)
  - GTK+ 3 (*)
@@ -40,7 +36,8 @@ distributions. To install the rest, run:
  1. Install the dependencies listed above.
  2. Clone this repository.
  3. Add the script as a startup application. (Use option `--short` for short
-    appearance if desired.)
+    appearance; use option `--order` to customize the order of the locks
+    displayed. See [Examples](#examples))
  4. Run the script manually for the first time. (Alternatively, log out
     and log in again.)
  5. The indicator should be shown at the top right corner, with a filled circle
@@ -48,6 +45,32 @@ distributions. To install the rest, run:
     turned off.
  6. Clicking on the indicator should result in a menu with the three locks.
     Clicking on the menu item would cause the corresponding lock to toggle.
+
+## Examples
+
+![indicator default][sc1]  
+Default appearance. `python3 indicator-keyboard-led.py`
+
+![indicator short][sc3]  
+Short appearance. `python3 indicator-keyboard-led.py --short`
+
+![indicator CNS][sc4]  
+Order changed to Caps Num Scroll.
+`python3 indicator-keyboard-led.py --order CNS`
+
+![indicator NC][sc5]  
+Hide Scroll lock. `python3 indicator-keyboard-led.py --order NC`
+
+![indicator C short][sc6]
+Show Caps lock only, short appearance.
+`python3 indicator-keyboard-led.py --short --order C`
+
+[sc1]: screenshots/sc1.png
+[sc2]: screenshots/sc2.png
+[sc3]: screenshots/sc3.png
+[sc4]: screenshots/sc4.png
+[sc5]: screenshots/sc5.png
+[sc6]: screenshots/sc6.png
 
 ## Known bugs
 
