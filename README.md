@@ -61,7 +61,7 @@ Order changed to Caps Num Scroll.
 ![indicator NC][sc5]  
 Hide Scroll lock. `python3 indicator-keyboard-led.py --order NC`
 
-![indicator C short][sc6]
+![indicator C short][sc6]  
 Show Caps lock only, short appearance.
 `python3 indicator-keyboard-led.py --short --order C`
 
