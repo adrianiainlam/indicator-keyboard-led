@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# indicator long label
+msgid "Num"
+msgstr ""
+
+# indicator long label
+msgid "Caps"
+msgstr ""
+
+# indicator long label
+msgid "Scroll"
+msgstr ""
+
+# indicator short label
+msgid "N"
+msgstr ""
+
+# indicator short label
+msgid "C"
+msgstr ""
+
+# indicator short label
+msgid "S"
+msgstr ""
+
+# menu entry
+msgid "Num Lock"
+msgstr ""
+
+# menu entry
+msgid "Caps Lock"
+msgstr ""
+
+# menu entry
+msgid "Scroll Lock"
+msgstr ""
+
+# menu entry
+msgid "Quit"
+msgstr ""

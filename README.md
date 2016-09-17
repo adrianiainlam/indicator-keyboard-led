@@ -65,12 +65,17 @@ Hide Scroll lock. `python3 indicator-keyboard-led.py --order NC`
 Show Caps lock only, short appearance.
 `python3 indicator-keyboard-led.py --short --order C`
 
+![indicator default, French locale][sc7]  
+Default appearance in a French locale.
+`LANGUAGE=fr_FR python3 indicator-keyboard-led.py`
+
 [sc1]: screenshots/sc1.png
 [sc2]: screenshots/sc2.png
 [sc3]: screenshots/sc3.png
 [sc4]: screenshots/sc4.png
 [sc5]: screenshots/sc5.png
 [sc6]: screenshots/sc6.png
+[sc7]: screenshots/sc7.png
 
 ## Known bugs
 
@@ -104,7 +109,13 @@ modified. [Original source][origsrc] by dm+ on PCLinuxOS-Forums.
 
 [origsrc]: http://www.pclinuxos.com/forum/index.php/topic,125690.msg1052201.html?PHPSESSID=2qsv83lve6dgd0ivq14bfcjc30#msg1052201
 [quotesrc]: http://askubuntu.com/a/597757/274080
-    
+
+## Localization
+
+As motivated by Issue #1, this script has been localized to French (with
+the assistance of Wikipedia and Google Translate). Corrections to the
+translation, as well as translations to other languages, are welcome.
+Feel free to create a pull request or open an issue.
 
 ## License
 
