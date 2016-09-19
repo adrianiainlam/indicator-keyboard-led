@@ -31,6 +31,13 @@ distributions. To install the rest, run:
 
     sudo apt-get install python3-gi xdotool
 
+**Note**: [`gdk_keymap_get_scroll_lock_state ()`][gtkdoc-scroll] is only
+available since GTK+ 3.18. The earliest Ubuntu release that supports
+GTK+ 3.18 is 16.04 (Xenial). This means that if you use an older version
+you will have to ignore Scroll lock functionality (See [Examples](#examples)).
+
+[gtkdoc-scroll]: https://developer.gnome.org/gdk3/stable/gdk3-Keyboard-Handling.html#gdk-keymap-get-scroll-lock-state
+
 ## Usage
 
  1. Install the dependencies listed above.
@@ -79,6 +86,8 @@ Default appearance in a French locale.
 
 ## Known bugs
 
+### Pressing Scroll Lock does nothing
+
 It seems to be a common problem that Scroll Lock is not usable in Ubuntu.
 To solve this, do the following (assuming US keyboard):
 
@@ -109,6 +118,16 @@ modified. [Original source][origsrc] by dm+ on PCLinuxOS-Forums.
 
 [origsrc]: http://www.pclinuxos.com/forum/index.php/topic,125690.msg1052201.html?PHPSESSID=2qsv83lve6dgd0ivq14bfcjc30#msg1052201
 [quotesrc]: http://askubuntu.com/a/597757/274080
+
+### X11Keymap has no attribute 'get_scroll_lock_state'
+
+If running the script gives the error message
+
+    AttributeError: 'gtk.gdk.X11Keymap' object has no attribute 'get_scroll_lock_state'
+
+then your installed GTK+ version is probably older than 3.18, which
+does not support `get_scroll_lock_state`. Either hide all Scroll Lock
+functionality (See [Examples](#examples)), or upgrade your system.
 
 ## Localization
 
