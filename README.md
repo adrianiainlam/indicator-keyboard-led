@@ -33,8 +33,8 @@ distributions. To install the rest, run:
 
 **Note**: [`gdk_keymap_get_scroll_lock_state ()`][gtkdoc-scroll] is only
 available since GTK+ 3.18. The earliest Ubuntu release that supports
-GTK+ 3.18 is 16.04 (Xenial). This means that if you use an older version
-you will have to ignore Scroll lock functionality (See [Examples](#examples)).
+GTK+ 3.18 is 16.04 (Xenial). This means that if you use an older version,
+scroll lock functionality will be disabled.
 
 [gtkdoc-scroll]: https://developer.gnome.org/gdk3/stable/gdk3-Keyboard-Handling.html#gdk-keymap-get-scroll-lock-state
 
@@ -66,7 +66,7 @@ Order changed to Caps Num Scroll.
 `python3 indicator-keyboard-led.py --order CNS`
 
 ![indicator NC][sc5]  
-Hide Scroll lock. `python3 indicator-keyboard-led.py --order NC`
+Hide Scroll lock, also the default appearance if Scroll lock is not supported. `python3 indicator-keyboard-led.py --order NC`
 
 ![indicator C short][sc6]  
 Show Caps lock only, short appearance.
@@ -84,7 +84,7 @@ Default appearance in a French locale.
 [sc6]: screenshots/sc6.png
 [sc7]: screenshots/sc7.png
 
-## Known bugs
+## Known bugs / Troubleshooting
 
 ### Pressing Scroll Lock does nothing
 
@@ -119,15 +119,19 @@ modified. [Original source][origsrc] by dm+ on PCLinuxOS-Forums.
 [origsrc]: http://www.pclinuxos.com/forum/index.php/topic,125690.msg1052201.html?PHPSESSID=2qsv83lve6dgd0ivq14bfcjc30#msg1052201
 [quotesrc]: http://askubuntu.com/a/597757/274080
 
-### X11Keymap has no attribute 'get_scroll_lock_state'
+### Scroll lock does not appear on indicator
 
-If running the script gives the error message
+Your installed GTK+ version is probably older than 3.18, which
+does not support `get_scroll_lock_state`. Please consider upgrading
+your system if you really want Scroll lock functionality.
 
-    AttributeError: 'gtk.gdk.X11Keymap' object has no attribute 'get_scroll_lock_state'
+If your installed GTK+ is 3.18+ then please file a bug report.
 
-then your installed GTK+ version is probably older than 3.18, which
-does not support `get_scroll_lock_state`. Either hide all Scroll Lock
-functionality (See [Examples](#examples)), or upgrade your system.
+### Drop-down menu only has "Quit", the clickable locks do not appear
+
+Please verify that xdotool is installed in your PATH with the executable
+bit set. If you provided a custom path to xdotool please verify that it
+is correct and is an executable regular file.
 
 ## Localization
 

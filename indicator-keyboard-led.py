@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # indicator-keyboard-led - simulate keyboard lock keys LED
-# Copyright (c) 2016 Adrian I Lam <adrianiainlam@gmail.com>
+# Copyright (c) 2017 Adrian I Lam <me@adrianiainlam.tk>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -28,52 +28,67 @@
 
 import signal
 import subprocess
-from os import path
+import os
 import argparse
-import sys
+import shutil
 import gi
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
 from gi.repository import Gdk, Gtk, AppIndicator3
 
-SCRIPT_DIR = path.dirname(path.realpath(__file__))
+APP_NAME = 'indicator-keyboard-led'
+APP_VERSION = '1.1'
+
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 import gettext
-t = gettext.translation('default', path.join(SCRIPT_DIR, 'locale'))
+t = gettext.translation('default', os.path.join(SCRIPT_DIR, 'locale'))
 _ = t.gettext
 
 class IndicatorKeyboardLED:
-    locks = { 'N': _('Num'), 'C': _('Caps'), 'S': _('Scroll') }
-    
-    def __init__(self, short=False, order='NCS'):
+    def __init__(self, short=False, order='NCS', xdotool=None):
+        self.validate_order(order)
+
         self.indicator = AppIndicator3.Indicator.new(
-            'indicator-keyboard-led',
-            path.join(SCRIPT_DIR, 'icon.svg'),
+            APP_NAME, os.path.join(SCRIPT_DIR, 'icon.svg'),
             AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
         self.indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
 
         if short:
             self.locks = { 'N': _('N'), 'C': _('C'), 'S': _('S') }
+        else:
+            self.locks = { 'N': _('Num'), 'C': _('Caps'), 'S': _('Scroll') }
 
         keymap = Gdk.Keymap.get_default()
         keymap.connect('state-changed', self.update_indicator, order)
         self.update_indicator(keymap, order)
+        self.create_menu(xdotool, order)
 
+    def create_menu(self, xdotool, order):
         menu = Gtk.Menu()
-        items = {
-            'N': Gtk.MenuItem.new_with_label(_('Num Lock')),
-            'C': Gtk.MenuItem.new_with_label(_('Caps Lock')),
-            'S': Gtk.MenuItem.new_with_label(_('Scroll Lock'))
-        }
-        items['N'].connect('activate', self.send_keypress, 'Num_Lock')
-        items['C'].connect('activate', self.send_keypress, 'Caps_Lock')
-        items['S'].connect('activate', self.send_keypress, 'Scroll_Lock')
+        xdotool = xdotool or shutil.which('xdotool')
+        if xdotool and os.access(xdotool, os.X_OK) and os.path.isfile(xdotool):
+            def send_keypress(menuitem, keystroke):
+                subprocess.call([xdotool, 'key', keystroke])
+            def new_menu_item(itemtype):
+                if itemtype == 'N':
+                    item = Gtk.MenuItem.new_with_label(_('Num Lock'))
+                    item.connect('activate', send_keypress, 'Num_Lock')
+                elif itemtype == 'C':
+                    item = Gtk.MenuItem.new_with_label(_('Caps Lock'))
+                    item.connect('activate', send_keypress, 'Caps_Lock')
+                elif itemtype == 'S':
+                    item = Gtk.MenuItem.new_with_label(_('Scroll Lock'))
+                    item.connect('activate', send_keypress, 'Scroll_Lock')
+                else:
+                    raise ValueError('Invalid itemtype')
+                return item
 
-        for i in order:
-            menu.append(items[i])
+            for i in order:
+                menu.append(new_menu_item(i))
+            menu.append(Gtk.SeparatorMenuItem())
 
         quit_item = Gtk.MenuItem.new_with_label(_('Quit'))
-        menu.append(Gtk.SeparatorMenuItem())
         menu.append(quit_item)
         quit_item.connect('activate', Gtk.main_quit)
 
@@ -94,17 +109,19 @@ class IndicatorKeyboardLED:
             labels += [('⚫' if state else '⚪') + self.locks[i]]
         self.indicator.set_label(' '.join(labels), '')
 
-    def send_keypress(self, menuitem, keystroke):
-        subprocess.call(['xdotool', 'key', keystroke])
+    def validate_order(self, order):
+        order = order.upper()
+        for i in order:
+            if i not in ['N', 'C', 'S']:
+                raise ValueError('Illegal character in ORDER. '
+                                 '(Choices: [N, C, S])')
+        if len(order) != len(set(order)):
+            raise ValueError('Repeated character in ORDER. '
+                             'Please specify each lock at most once.')
+        if 'S' in order and Gtk.check_version(3, 18, 0) is not None:
+            # Silently drop Scroll lock if GTK <= 3.18
+            order.remove('S')
 
-def validate_order(args):
-    args.order = args.order.upper()
-    for i in args.order:
-        if i not in ['N', 'C', 'S']:
-            sys.exit('Illegal character in ORDER. (Choices: [N, C, S])')
-    if len(args.order) != len(set(args.order)):
-        sys.exit('Repeated character in ORDER. '
-                 'Please specify each lock at most once.')
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, lambda signum, frame: Gtk.main_quit())
@@ -117,8 +134,12 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--order', required=False, default='NCS',
         help='specify the order of the locks displayed, e.g. CSN for '
              '⚫Caps ⚫Scroll ⚫Num, or NC for ⚫Num ⚫Caps without Scroll lock')
+    parser.add_argument('-x', '--xdotool', required=False,
+        help='provide full path to xdotool executable, '
+             'e.g. "/usr/bin/xdotool"; '
+             'if not specified, search in PATH')
     args = parser.parse_args()
-    validate_order(args)
 
-    IndicatorKeyboardLED(short=args.short, order=args.order)
+    IndicatorKeyboardLED(short=args.short, order=args.order,
+                         xdotool=args.xdotool)
     Gtk.main()
