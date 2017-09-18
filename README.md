@@ -19,62 +19,41 @@ the respective item in the menu.
 ![indicator short][sc3]  
 Alternative (short) appearance of the indicator.
 
-## Dependencies
- - Python 3 (*)
- - GTK+ 3 (*)
- - AppIndicator 3 (*)
- - Python 3 GObject introspection (python3-gi)
- - xdotool
+## Installation from Ubuntu PPA
 
-Those marked with (*) are probably installed by default in recent Ubuntu
-distributions. To install the rest, run:
+* This is a work in progress. *
 
-    sudo apt-get install python3-gi xdotool
+After installation the postinst script will prompt you for preferences
+configuration. These config are explained here:
 
-**Note**: [`gdk_keymap_get_scroll_lock_state ()`][gtkdoc-scroll] is only
-available since GTK+ 3.18. The earliest Ubuntu release that supports
-GTK+ 3.18 is 16.04 (Xenial). This means that if you use an older version,
-scroll lock functionality will be disabled.
+### Short label
 
-[gtkdoc-scroll]: https://developer.gnome.org/gdk3/stable/gdk3-Keyboard-Handling.html#gdk-keymap-get-scroll-lock-state
+The default appearance of the indicator has long labels:  
+![⚫Num ⚫Caps ⚫Scroll][sc1]
 
-## Usage
+On small displays it may be preferable to use short labels:  
+![⚫N ⚫C ⚫S][sc3]
 
- 1. Install the dependencies listed above.
- 2. Clone this repository.
- 3. Add the script as a startup application. (Use option `--short` for short
-    appearance; use option `--order` to customize the order of the locks
-    displayed. See [Examples](#examples))
- 4. Run the script manually for the first time. (Alternatively, log out
-    and log in again.)
- 5. The indicator should be shown at the top right corner, with a filled circle
-    representing a lock turned on and an unfilled circle representing a lock
-    turned off.
- 6. Clicking on the indicator should result in a menu with the three locks.
-    Clicking on the menu item would cause the corresponding lock to toggle.
+### Order
 
-## Examples
+This option allows you to reorder the locks and also to hide
+some locks if you don't need them.
 
-![indicator default][sc1]  
-Default appearance. `python3 indicator-keyboard-led.py`
+Use a string consisting of zero or one occurrence of the
+characters 'N', 'C' and 'S' to set this option.
 
-![indicator short][sc3]  
-Short appearance. `python3 indicator-keyboard-led.py --short`
+For exampe, the default order is "Num Caps Scroll".  
+![⚫Num ⚫Caps ⚫Scroll][sc1]
 
-![indicator CNS][sc4]  
-Order changed to Caps Num Scroll.
-`python3 indicator-keyboard-led.py --order CNS`
+**CNS** changes this to "Caps Num Scroll".  
+![⚫Caps ⚫Num ⚫Scroll][sc4]
 
-![indicator NC][sc5]  
-Hide Scroll lock, also the default appearance if Scroll lock is not supported. `python3 indicator-keyboard-led.py --order NC`
+**NC** hides Scroll lock from the default appearance.  
+![⚫Num ⚫Caps][sc5]
 
-![indicator C short][sc6]  
-Show Caps lock only, short appearance.
-`python3 indicator-keyboard-led.py --short --order C`
-
-![indicator default, French locale][sc7]  
-Default appearance in a French locale.
-`LANGUAGE=fr_FR python3 indicator-keyboard-led.py`
+**C**, combined with the previous *short* option,
+would give a very compact Caps lock indicator.  
+![⚫C][sc6]
 
 [sc1]: screenshots/sc1.png
 [sc2]: screenshots/sc2.png
@@ -82,7 +61,32 @@ Default appearance in a French locale.
 [sc4]: screenshots/sc4.png
 [sc5]: screenshots/sc5.png
 [sc6]: screenshots/sc6.png
-[sc7]: screenshots/sc7.png
+
+### xdotool
+
+`xdotool` is used to emulate key strokes to set/unset locks on mouse clicks.
+If you installed xdotool at a non-default location, please provide its full
+path (e.g. /home/user/bin/xdotool) with this option.
+
+If it is installed in your $PATH environment variable, or not installed at
+all, leave this option blank.
+
+### Changing your mind
+
+If you want to change these settings afterwards, simply run
+
+    sudo dpkg-reconfigure indicator-keyboard-led
+
+and you will be prompted again.
+
+## Usage
+
+The indicator should be shown at the top right corner, with a filled circle
+representing a lock turned on and an unfilled circle representing a lock
+turned off.
+
+Clicking on the indicator should result in a menu with the three locks.
+Clicking on the menu item would cause the corresponding lock to toggle.
 
 ## Known bugs / Troubleshooting
 
@@ -122,10 +126,14 @@ modified. [Original source][origsrc] by dm+ on PCLinuxOS-Forums.
 ### Scroll lock does not appear on indicator
 
 Your installed GTK+ version is probably older than 3.18, which
-does not support `get_scroll_lock_state`. Please consider upgrading
-your system if you really want Scroll lock functionality.
+does not support [`gdk_keymap_get_scroll_lock_state ()`][gtkdoc-scroll].
+The earliest Ubuntu release that supports GTK+ 3.18 is 16.04 (Xenial).
+If you use an older version, Scroll lock functionality will be disabled.
+Please consider upgrading your system if you really want Scroll lock.
 
 If your installed GTK+ is 3.18+ then please file a bug report.
+
+[gtkdoc-scroll]: https://developer.gnome.org/gdk3/stable/gdk3-Keyboard-Handling.html#gdk-keymap-get-scroll-lock-state
 
 ### Drop-down menu only has "Quit", the clickable locks do not appear
 
@@ -140,12 +148,17 @@ the assistance of Wikipedia and Google Translate). Corrections to the
 translation, as well as translations to other languages, are welcome.
 Feel free to create a pull request or open an issue.
 
+![indicator default, French locale][sc7]  
+Default appearance in a French locale.
+
+[sc7]: screenshots/sc7.png
+
 ## License
 
 The program "indicator-keyboard-led.py" is released under the MIT License.
 Please refer to the file for the full text of the license.
 
-The icon "icon.svg" is released to the public domain.
+The icon "indicator-keyboard-led.svg" is released to the public domain.
 
 ## Credits
 
@@ -153,8 +166,9 @@ I would like to thank [Tobias Schlitt](https://github.com/tobyS), who wrote
 [indicator-chars](https://github.com/tobyS/indicator-chars) which I used
 as a reference when writing this software.
 
-The icon used in the indicator (icon.svg) is modified from the file
-"emblem-readonly.svg" by [Jakub Steiner](http://jimmac.musichall.cz)
+The icon used in the indicator (indicator-keyboard-led.svg) is modified
+from the file "emblem-readonly.svg" by
+[Jakub Steiner](http://jimmac.musichall.cz)
 who released it to the public domain for the
 [Tango Icon Library](http://tango.freedesktop.org/Tango_Icon_Library).
 
