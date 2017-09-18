@@ -1,0 +1,21 @@
+#!/bin/sh -e
+pkill indicator-keyboard-led.py || true
+
+# modify autostart .desktop file to include debconf results
+. /usr/share/debconf/confmodule
+args=
+db_get indicator-keyboard-led/short
+if [ "$RET" = "true" ]; then
+    args="$args --short"
+fi
+db_get indicator-keyboard-led/order
+if [ -n "$RET" ]; then
+    args="$args --order $RET"
+fi
+db_get indicator-keyboard-led/xdotool
+if [ -n "$RET" ]; then
+    args="$args --xdotool $RET"
+fi
+sed -i 's|^Exec=.*$|Exec=/usr/bin/indicator-keyboard-led.py'" $args"'|' /etc/xdg/autostart/indicator-keyboard-led.desktop
+
+sudo ln -s /etc/xdg/autostart/indicator-keyboard-led.desktop /usr/share/applications/indicator-keyboard-led.desktop

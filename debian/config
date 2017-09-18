@@ -1,0 +1,9 @@
+#!/bin/sh -e
+. /usr/share/debconf/confmodule
+
+db_input high indicator-keyboard-led/short || true
+db_go
+db_input high indicator-keyboard-led/order || true
+db_go
+db_input high indicator-keyboard-led/xdotool || true
+db_go

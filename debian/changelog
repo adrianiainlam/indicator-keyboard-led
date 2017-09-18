@@ -1,0 +1,5 @@
+indicator-keyboard-led (1.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #2)
+
+ -- Adrian I Lam <me@adrianiainlam.tk>  Mon, 18 Sep 2017 17:38:46 +0800

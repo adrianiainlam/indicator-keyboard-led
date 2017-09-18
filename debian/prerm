@@ -1,0 +1,2 @@
+#!/bin/sh -e
+pkill indicator-keyboard-led.py || true

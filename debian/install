@@ -1,0 +1,7 @@
+indicator-keyboard-led.py usr/bin
+indicator-keyboard-led.desktop etc/xdg/autostart
+indicator-keyboard-led.svg usr/share/icons/hicolor/scalable/apps
+locale/en/LC_MESSAGES/indicator-keyboard-led.mo usr/share/locale/en/LC_MESSAGES
+locale/fr/LC_MESSAGES/indicator-keyboard-led.mo usr/share/locale/fr/LC_MESSAGES
+README.md usr/share/doc/indicator-keyboard-led
+screenshots usr/share/doc/indicator-keyboard-led

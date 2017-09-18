@@ -1,0 +1,21 @@
+Source: indicator-keyboard-led
+Section: utils
+Priority: optional
+Maintainer: Adrian I Lam <me@adrianiainlam.tk>
+Build-Depends: debhelper (>=9), python3
+Standards-Version: 3.9.7
+Homepage: https://github.com/adrianiainlam/indicator-keyboard-led
+Vcs-Git: https://github.com/adrianiainlam/indicator-keyboard-led.git
+Vcs-Browser: https://github.com/adrianiainlam/indicator-keyboard-led
+
+Package: indicator-keyboard-led
+Architecture: all
+Depends: python3, libgtk-3-0, libappindicator3-1, python3-gi, debconf (>= 0.2.17), ${misc:Depends}
+Recommends: libgtk-3-0 (>= 3.18), xdotool
+Description: simulate keyboard lock keys LED
+ This is a Unity application indicator designed for keyboards without lock
+ keys LED. It allows the user to check the state of the three locks (Caps
+ lock, Num lock and Scroll lock) without requiring any mouse or keyboard
+ action. It also allows the lock keys to be toggled with mouse clicks, which
+ could be useful for keyboards without Scroll lock keys or malfunctioning
+ keyboards.
