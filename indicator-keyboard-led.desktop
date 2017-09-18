@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=indicator-keyboard-led
+Type=Application
+Exec=/usr/bin/indicator-keyboard-led.py
+Icon=indicator-keyboard-led
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
