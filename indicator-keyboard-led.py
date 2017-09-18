@@ -40,9 +40,9 @@ from gi.repository import Gdk, Gtk, AppIndicator3
 APP_NAME = 'indicator-keyboard-led'
 APP_VERSION = '1.1'
 
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+ICON_LOCATION = '/usr/share/icons/hicolor/scalable/apps/' + APP_NAME + '.svg'
 import gettext
-t = gettext.translation('default', os.path.join(SCRIPT_DIR, 'locale'))
+t = gettext.translation(APP_NAME, '/usr/share/locale')
 _ = t.gettext
 
 class IndicatorKeyboardLED:
@@ -50,7 +50,7 @@ class IndicatorKeyboardLED:
         self.validate_order(order)
 
         self.indicator = AppIndicator3.Indicator.new(
-            APP_NAME, os.path.join(SCRIPT_DIR, 'icon.svg'),
+            APP_NAME, ICON_LOCATION,
             AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
         self.indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
 
