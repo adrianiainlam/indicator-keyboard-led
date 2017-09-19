@@ -81,6 +81,10 @@ and you will be prompted again.
 
 ## Usage
 
+The indicator will be configured to autostart on log-in. To start using the
+indicator after installation, log-out and log-in again, or manually start
+the indicator (search for "indicator-keyboard-led" in the dash).
+
 The indicator should be shown at the top right corner, with a filled circle
 representing a lock turned on and an unfilled circle representing a lock
 turned off.
