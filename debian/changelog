@@ -1,4 +1,10 @@
-indicator-keyboard-led (1.1-1) unstable; urgency=medium
+indicator-keyboard-led (1.1-2) xenial; urgency=medium
+
+  * Remove files on postrm
+
+ -- Adrian I Lam <me@adrianiainlam.tk>  Tue, 19 Sep 2017 17:34:40 +0800
+
+indicator-keyboard-led (1.1-1+xenial0) xenial; urgency=medium
 
   * Initial release (Closes: #2)
 

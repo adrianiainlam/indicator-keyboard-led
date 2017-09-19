@@ -1,5 +1,12 @@
 #!/bin/sh -e
 
+if [ -e /usr/share/applications/indicator-keyboard-led.desktop ]; then
+    rm /usr/share/applications/indicator-keyboard-led.desktop
+fi
+if [ -e /etc/xdg/autostart/indicator-keyboard-led.desktop ]; then
+    rm /etc/xdg/autostart/indicator-keyboard-led.desktop
+fi
+
 if [ "$1" = "purge" -a -e /usr/share/debconf/confmodule ]; then
     . /usr/share/debconf/confmodule
     db_purge
