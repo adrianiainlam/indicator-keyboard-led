@@ -1,6 +1,6 @@
-indicator-keyboard-led (1.1-2) xenial; urgency=medium
+indicator-keyboard-led (1.1.1-1) xenial; urgency=medium
 
-  * Remove files on postrm
+  * Remove files on postrm; update README.md with PPA info
 
  -- Adrian I Lam <me@adrianiainlam.tk>  Tue, 19 Sep 2017 17:34:40 +0800
 
