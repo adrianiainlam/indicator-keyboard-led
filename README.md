@@ -21,7 +21,9 @@ Alternative (short) appearance of the indicator.
 
 ## Installation from Ubuntu PPA
 
-* This is a work in progress. *
+    sudo add-apt-repository ppa:adrianiainlam/indicator-keyboard-led
+    sudo apt-get update
+    sudo apt-get install indicator-keyboard-led
 
 After installation the postinst script will prompt you for preferences
 configuration. These config are explained here:
