@@ -6,6 +6,9 @@ Num lock and Scroll lock) without requiring any mouse or keyboard action. It
 also allows the lock keys to be toggled with mouse clicks, which could be
 useful for keyboards without Scroll lock keys or malfunctioning keyboards.
 
+**Note**: This indicator is known to not work on Xfce / Xubuntu.
+For more details, see [#6](https://github.com/adrianiainlam/indicator-keyboard-led/issues/6).
+
 ## Screenshots
 
 ![indicator default][sc1]  
@@ -95,6 +98,10 @@ Clicking on the indicator should result in a menu with the three locks.
 Clicking on the menu item would cause the corresponding lock to toggle.
 
 ## Known bugs / Troubleshooting
+
+### Indicator label does not show on Xfce / XUbuntu
+
+See [#6](https://github.com/adrianiainlam/indicator-keyboard-led/issues/6).
 
 ### Pressing Scroll Lock does nothing
 
