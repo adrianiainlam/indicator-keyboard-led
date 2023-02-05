@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg11300"
+   sodipodi:version="0.32"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="indicator-keyboard-led-C-on.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.1">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview6"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="9.8333333"
+     inkscape:cx="8.4441852"
+     inkscape:cy="20.424683"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <dc:Agent>
+            <dc:title>Jakub Steiner</dc:title>
+          </dc:Agent>
+        </dc:creator>
+        <dc:contributor>Adrian I Lam</dc:contributor>
+        <dc:source>http://jimmac.musichall.cz</dc:source>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:title></dc:title>
+        <dc:subject>caps lock</dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="fill:#303030"
+       d="M 22.9375,3.0058594 C 15.653591,3.2371063 10.824219,6.7870543 10.824219,14.107422 v 7.470703 H 9.1855469 C 7.9827519,21.578125 7,22.41744 7,23.46875 V 43.109375 C 7,44.160685 7.9827519,45.000002 9.1855469,45 H 38.84375 C 40.046563,45 41,44.160684 41,43.109375 V 23.46875 c 0,-1.051308 -0.953437,-1.890625 -2.15625,-1.890625 h -1.667969 l 0.0293,-7.349609 c 0,-7.7707365 -5.240554,-11.1267423 -13.173828,-11.2226566 -0.369866,-0.00453 -0.735515,-0.011424 -1.09375,0 z m 0.728516,4.9101562 c 0.133854,-0.00308 0.287293,0 0.425781,0 8.802152,0 8.12589,6.3440594 8.255859,8.2343754 v 5.427734 H 15.773438 v -5.396484 c -0.03131,-1.875307 -0.545506,-8.0727377 7.892578,-8.2656254 z"
+       id="path2086"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cscssscsssscccccccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="23.882812"
+       y="42.305084"
+       id="text4520">C</text>
+  </g>
+</svg>
