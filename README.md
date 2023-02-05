@@ -16,9 +16,6 @@ off.
 Menu of the indicator, shown on click. The locks can be toggled by clicking
 the respective item in the menu.
 
-![indicator short][sc3]  
-Alternative (short) appearance of the indicator.
-
 ## Installation from Ubuntu PPA
 
     sudo add-apt-repository ppa:adrianiainlam/indicator-keyboard-led
@@ -27,14 +24,6 @@ Alternative (short) appearance of the indicator.
 
 After installation the postinst script will prompt you for preferences
 configuration. These config are explained here:
-
-### Short label
-
-The default appearance of the indicator has long labels:  
-![⚫Num ⚫Caps ⚫Scroll][sc1]
-
-On small displays it may be preferable to use short labels:  
-![⚫N ⚫C ⚫S][sc3]
 
 ### Order
 
@@ -45,24 +34,18 @@ Use a string consisting of zero or one occurrence of the
 characters 'N', 'C' and 'S' to set this option.
 
 For exampe, the default order is "Num Caps Scroll".  
-![⚫Num ⚫Caps ⚫Scroll][sc1]
+![Num Caps Scroll][sc1]
 
 **CNS** changes this to "Caps Num Scroll".  
-![⚫Caps ⚫Num ⚫Scroll][sc4]
+![Caps Num Scroll][sc4]
 
 **NC** hides Scroll lock from the default appearance.  
-![⚫Num ⚫Caps][sc5]
-
-**C**, combined with the previous *short* option,
-would give a very compact Caps lock indicator.  
-![⚫C][sc6]
+![Num Caps][sc5]
 
 [sc1]: screenshots/sc1.png
 [sc2]: screenshots/sc2.png
-[sc3]: screenshots/sc3.png
 [sc4]: screenshots/sc4.png
 [sc5]: screenshots/sc5.png
-[sc6]: screenshots/sc6.png
 
 ### xdotool
 
@@ -96,13 +79,17 @@ Clicking on the menu item would cause the corresponding lock to toggle.
 
 ## Known bugs / Troubleshooting
 
+### Indicator label does not show on Xfce / XUbuntu
+
+See [#6](https://github.com/adrianiainlam/indicator-keyboard-led/issues/6).
+
 ### Pressing Scroll Lock does nothing
 
 It seems to be a common problem that Scroll Lock is not usable in Ubuntu.
 To solve this, do the following (assuming US keyboard):
 
  >     # backup your symbols file
- >     sudo cp /usr/share/X11/xkb/symbols/us{,.distribution} 
+ >     sudo cp /usr/share/X11/xkb/symbols/us{,.distribution}
  >
  > Add the following line in the `xkb_symbols "basic" {` section. Do not worry
  > if that second line is not there, it is only there for some languages and
@@ -110,7 +97,7 @@ To solve this, do the following (assuming US keyboard):
  >
  >     ...
  >         modifier_map Mod3   { Scroll_Lock }; <==<< Add this line
- > 
+ >
  >         include "level3(ralt_switch)" <==<< before this line
  >     };
  >
@@ -149,13 +136,26 @@ is correct and is an executable regular file.
 
 ## Localization
 
-As motivated by Issue #1, this script has been localized to French (with
-the assistance of Wikipedia and Google Translate). Corrections to the
-translation, as well as translations to other languages, are welcome.
-Feel free to create a pull request or open an issue.
+Unfortunately, in order to work-around labels not being shown on newer
+non-Unity-based Ubuntus, I have re-designed the indicators to be based
+purely on icons instead. This means there will no longer be labels to
+localize, and I instead have hardcoded icons.
 
-![indicator default, French locale][sc7]  
-Default appearance in a French locale.
+The icons are SVGs so you can still manually edit them if you want.
+Look for the `<text>` tag at the end of the SVGs.
+
+The menu items shown on click are still localized.
+
+I have included a screenshot below to show the old design (version 1.1)
+which you can still install manually if you wish.
+
+> As motivated by Issue #1, this script has been localized to French (with
+> the assistance of Wikipedia and Google Translate). Corrections to the
+> translation, as well as translations to other languages, are welcome.
+> Feel free to create a pull request or open an issue.
+>
+> ![indicator default, French locale][sc7]  
+> Default appearance in a French locale.
 
 [sc7]: screenshots/sc7.png
 
@@ -164,7 +164,7 @@ Default appearance in a French locale.
 The program "indicator-keyboard-led.py" is released under the MIT License.
 Please refer to the file for the full text of the license.
 
-The icon "indicator-keyboard-led.svg" is released to the public domain.
+The icons "indicator-keyboard-led*.svg" are released to the public domain.
 
 ## Credits
 
@@ -172,7 +172,7 @@ I would like to thank [Tobias Schlitt](https://github.com/tobyS), who wrote
 [indicator-chars](https://github.com/tobyS/indicator-chars) which I used
 as a reference when writing this software.
 
-The icon used in the indicator (indicator-keyboard-led.svg) is modified
+The icons used in the indicator (indicator-keyboard-led*.svg) are modified
 from the file "emblem-readonly.svg" by
 [Jakub Steiner](http://jimmac.musichall.cz)
 who released it to the public domain for the
