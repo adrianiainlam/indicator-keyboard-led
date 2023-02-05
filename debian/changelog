@@ -1,3 +1,9 @@
+indicator-keyboard-led (1.2-1) xenial; urgency=medium
+
+  * New re-design with icons only instead of labels.
+
+ -- Adrian I Lam <me@adrianiainlam.tk>  Sun, 5 Feb 2023 06:25:10 +0000
+
 indicator-keyboard-led (1.1.1-1) xenial; urgency=medium
 
   * Remove files on postrm; update README.md with PPA info

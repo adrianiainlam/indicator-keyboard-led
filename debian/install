@@ -1,7 +1,12 @@
-indicator-keyboard-led.py usr/bin
+README.md usr/share/doc/indicator-keyboard-led
+indicator-keyboard-led-C-off.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led-C-on.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led-N-off.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led-N-on.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led-S-off.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led-S-on.svg usr/share/icons/hicolor/scalable/apps
 indicator-keyboard-led.desktop etc/xdg/autostart
-indicator-keyboard-led.svg usr/share/icons/hicolor/scalable/apps
+indicator-keyboard-led.py usr/bin
 locale/en/LC_MESSAGES/indicator-keyboard-led.mo usr/share/locale/en/LC_MESSAGES
 locale/fr/LC_MESSAGES/indicator-keyboard-led.mo usr/share/locale/fr/LC_MESSAGES
-README.md usr/share/doc/indicator-keyboard-led
 screenshots usr/share/doc/indicator-keyboard-led

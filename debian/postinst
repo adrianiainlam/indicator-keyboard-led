@@ -4,10 +4,6 @@ pkill indicator-keyboard-led.py || true
 # modify autostart .desktop file to include debconf results
 . /usr/share/debconf/confmodule
 args=
-db_get indicator-keyboard-led/short
-if [ "$RET" = "true" ]; then
-    args="$args --short"
-fi
 db_get indicator-keyboard-led/order
 if [ -n "$RET" ]; then
     args="$args --order $RET"

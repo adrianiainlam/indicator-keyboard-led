@@ -1,20 +1,13 @@
-Template: indicator-keyboard-led/short
-Type: boolean
-Default: false
-Description: Enable short labels:
- Short labels: e.g. ⚫N ⚫C ⚫S
- Default labels: e.g. ⚫Num ⚫Caps ⚫Scroll
-
 Template: indicator-keyboard-led/order
 Type: string
 Default: NCS
 Description: Locks display order [NCS]:
  Use N for Num lock, C for Caps lock and S for Scroll lock.
  Examples:
-  NCS   gives    ⚫Num ⚫Caps ⚫Scroll [default]
-  CNS   gives    ⚫Caps ⚫Num ⚫Scroll
-  NC    gives    ⚫Num ⚫Caps (Scroll hidden)
-  C     gives    ⚫Caps
+  NCS   gives    Num Caps Scroll [default]
+  CNS   gives    Caps Num Scroll
+  NC    gives    Num Caps (Scroll hidden)
+  C     gives    Caps
 
 Template: indicator-keyboard-led/xdotool
 Type: string
