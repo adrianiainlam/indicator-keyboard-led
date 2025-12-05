@@ -1,5 +1,5 @@
 #!/bin/sh -e
-pkill indicator-keyboard-led.py || true
+pkill -f indicator-keyboard-led.py || true
 
 # modify autostart .desktop file to include debconf results
 . /usr/share/debconf/confmodule
