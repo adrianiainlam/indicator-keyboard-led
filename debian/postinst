@@ -12,6 +12,6 @@ db_get indicator-keyboard-led/xdotool
 if [ -n "$RET" ]; then
     args="$args --xdotool $RET"
 fi
-sed -i 's|^Exec=.*$|Exec=/usr/bin/indicator-keyboard-led.py'" $args"'|' /etc/xdg/autostart/indicator-keyboard-led.desktop
+sed 's|^Exec=.*$|Exec=/usr/bin/indicator-keyboard-led.py'" $args"'|' /usr/share/doc/indicator-keyboard-led/indicator-keyboard-led.desktop > /etc/xdg/autostart/indicator-keyboard-led.desktop
 
-sudo ln -s /etc/xdg/autostart/indicator-keyboard-led.desktop /usr/share/applications/indicator-keyboard-led.desktop
+ln -s /etc/xdg/autostart/indicator-keyboard-led.desktop /usr/share/applications/indicator-keyboard-led.desktop
