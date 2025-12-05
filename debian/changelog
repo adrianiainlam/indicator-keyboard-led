@@ -1,3 +1,9 @@
+indicator-keyboard-led (1.2-3) bionic; urgency=medium
+
+  * Fix other errors in debian scripts
+
+ -- Adrian I Lam <me@adrianiainlam.tk>  Fri, 05 Dec 2025 18:30:17 +0000
+
 indicator-keyboard-led (1.2-2) bionic; urgency=medium
 
   * Fix pkill command in debian scripts
